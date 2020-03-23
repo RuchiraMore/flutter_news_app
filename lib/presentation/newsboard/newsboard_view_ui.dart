@@ -7,7 +7,7 @@ import 'package:flutter_news_app/utils/content_scroll.dart';
 
 class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
-  var myImgList = ["assets/images/news.jpg","assets/images/news.jpg","assets/images/news.jpg"];
+  var myImgList = ["assets/images/netflix_logo.png","assets/images/netflix_logo.png","assets/images/netflix_logo.png"];
 
   _movieSelector(int index, NewsboardViewmodel model) {
 
@@ -89,13 +89,13 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
           left: 20,
           bottom: 90,
           child: Container(
-            color: Colors.lime,
+//            color: Colors.lime,
             width: 280,
             child: Text("Drones: A Bird's Eye View of Photographer",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 24.0,
+              fontSize: 25.0,
             ),),
           ),
         ),
@@ -105,7 +105,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
           left: 20,
           bottom: 40,
           child: Container(
-            color: Colors.amber,
+//            color: Colors.amber,
             width: 280,
             child: Row(
               children: <Widget>[
@@ -116,7 +116,8 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                   child: Container(
                     child: CircleAvatar(
                       child: ClipOval(
-                        child: Image.asset(AssetIcons.news,
+                        child: Image.asset(
+                          "assets/images/user_logo.png",
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -138,7 +139,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                         "Jone Green",
                         style: TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                           fontSize: 14.0,
                         ),
                       ),
@@ -149,7 +150,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
                             CircleAvatar(
                               child: ClipOval(
-                                child: Image.asset(AssetIcons.news,
+                                child: Image.asset(AssetIcons.time,
                                   fit: BoxFit.contain,
                                 ),
                               ),
@@ -191,72 +192,79 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
       color: Colors.white,
       child: ListView(
         children: <Widget>[
-
-              ///First - Header View
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: new Container(
-                  color: Colors.white,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: new Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              "Technology",
-                              style: new TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                            Text(
-                              "FRI 20 MARCH",
-                              style: new TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.red,
-                              ),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
+          
+          ///First - Header View
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: new Container(
+              color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: new Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Technology",
+                          style: new TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.left,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Container(
-                          child: CircleAvatar(
-                            child: ClipOval(
-                              child: Image.asset(
-                                  "assets/images/news_icon.png",
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            radius: 25,
+                        Text(
+                          "FRI 20 MARCH",
+                          style: new TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.red,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Container(
+                      child: CircleAvatar(
+                        child: ClipOval(
+                          child: Image.asset(
+                            "assets/images/news_icon.png",
+                            fit: BoxFit.contain,
                           ),
                         ),
+                        radius: 25,
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
+            ),
+          ),
 
-              ///Second - News slider container view
-              Container(
-                width: double.infinity,
-                height: 300.0,
-                child: PageView.builder(
-                  controller: model.pageController,
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int index){
-                    return _movieSelector(index, model);
-                  },
-                ),
-              ),
+          ///Second - News slider container view
+          Container(
+            width: double.infinity,
+            height: 300.0,
+            child: PageView.builder(
+              controller: model.pageController,
+              itemCount: 5,
+              itemBuilder: (BuildContext context, int index){
+                return _movieSelector(index, model);
+              },
+            ),
+          ),
 
-              //Third - Display Popular list
+          //Third - Display Popular list
+          ContentScroll(
+            images: myImgList,
+            title: ConstantsHeader.HeaderPopular,
+            subtitle: "Show more",
+            imageHeight: 150.0,
+            imageWidth: 500.0,
+          ),
         ],
       ),
     );
