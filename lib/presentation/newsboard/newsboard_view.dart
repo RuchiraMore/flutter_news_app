@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base_architecture/ui/base_widget.dart';
 import 'package:flutter_news_app/presentation/base/newsboard_baseview.dart';
+import 'package:flutter_news_app/presentation/newsboard/newsboard_view_ui.dart';
 import 'package:flutter_news_app/presentation/newsboard/newsboard_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +25,7 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
         print('new model is ready');
       },
       builder: (BuildContext context, NewsboardViewmodel model, Widget child){
-        return Container(
-          color: Colors.greenAccent,
-        );
+        return NewsboardViewUi();
       },
     );
   }

@@ -8,4 +8,7 @@ class AssetIcons {
   static const String pollyPayLogo = "assets/images/polly_pay_logo.png";
   static const String slider = "assets/images/slider.png";
   static const String user = "assets/images/user.png";
+  static const String news = "assets/images/news.png";
+  static const String bookmark_white = "assets/images/bookmark_white.png";
+
 }
