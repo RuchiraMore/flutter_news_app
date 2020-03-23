@@ -127,7 +127,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                 ),
 
                 ///for handling space
-                SizedBox(width: 10,),
+                SizedBox(width: 10),
 
                 ///set Reporter name and news time
                 Expanded(
@@ -144,6 +144,8 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                         ),
                       ),
 
+                      SizedBox(height: 5),
+
                       Container(
                         child: Row(
                           children: <Widget>[
@@ -157,15 +159,14 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                               radius: 8.0,
                             ),
 
-                            Padding(
-                              padding: EdgeInsets.only(left: 2),
-                              child: Text(
-                                "10 hours ago",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14.0,
-                                ),
+                            SizedBox(width: 2),
+
+                            Text(
+                              "10 hours ago",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 14.0,
                               ),
                             ),
 
@@ -231,7 +232,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                       child: CircleAvatar(
                         child: ClipOval(
                           child: Image.asset(
-                            "assets/images/news_icon.png",
+                            AssetIcons.user_logo,
                             fit: BoxFit.contain,
                           ),
                         ),
