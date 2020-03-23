@@ -192,6 +192,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
     return Container(
       color: Colors.white,
       child: ListView(
+        primary: true,
         children: <Widget>[
           
           ///First - Header View
