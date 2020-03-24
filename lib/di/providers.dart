@@ -26,6 +26,9 @@ List<SingleChildCloneableWidget> dependentServices = [
         ErrorHandler<NewsboardErrorParser>(errorParser),
   ),
 
+
+
+
   ProxyProvider<NewsDatastore, UserStore>(
       update: (context, NewsDatastore, userStore) => userStore
   ),
@@ -34,5 +37,7 @@ List<SingleChildCloneableWidget> dependentServices = [
     update: (context, inewsRepository, newsUseCase) =>
         CheckNewsUsecase(inewsRepository),
   ),
+
+
 
 ];
