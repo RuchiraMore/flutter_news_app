@@ -33,18 +33,6 @@ class ContentScroll extends StatelessWidget {
                 ),
               ),
 
-//              Padding(
-//                padding: EdgeInsets.only(right: 10),
-//                child: Text(
-//                  subtitle,
-//                  style: TextStyle(
-//                    color: Colors.red,
-//                    fontSize: 18.0,
-//                    fontWeight: FontWeight.normal,//w600,
-//                  ),
-//                ),
-//              ),
-
               GestureDetector(
                 child: IconButton(
                     iconSize: 30.0,

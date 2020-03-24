@@ -1,3 +1,3 @@
-//class CheckNewsRequest {
-//
-//}
+class CheckNewsRequest {
+
+}

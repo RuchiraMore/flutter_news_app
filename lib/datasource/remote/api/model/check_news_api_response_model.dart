@@ -1,3 +1,3 @@
-//class CheckNewsApiModel {
-//
-//}
+class CheckNewsApiModel {
+
+}

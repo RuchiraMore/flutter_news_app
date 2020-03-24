@@ -4,6 +4,7 @@ import 'package:flutter_news_app/constant/asset_icons.dart';
 import 'package:flutter_news_app/presentation/base/newsboard_baseview.dart';
 import 'package:flutter_news_app/presentation/newsboard/newsboard_viewmodel.dart';
 import 'package:flutter_news_app/utils/content_scroll.dart';
+import 'package:flutter_news_app/utils/date_class.dart';
 
 class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
@@ -80,6 +81,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                 ),
                 onPressed: (){
                   print("Bookmark icon tappeed");
+
               })
           ),
         ),
@@ -144,20 +146,26 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                         ),
                       ),
 
-                      SizedBox(height: 5),
+                      SizedBox(height: 2),
 
                       Container(
                         child: Row(
                           children: <Widget>[
 
-                            CircleAvatar(
-                              child: ClipOval(
-                                child: Image.asset(AssetIcons.time,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                              radius: 8.0,
+                            Icon(
+                              Icons.access_time,
+                              color: Colors.white,
+                              size: 20.0,
                             ),
+
+//                            CircleAvatar(
+//                              child: ClipOval(
+//                                child: Image.asset(AssetIcons.time,
+//                                  fit: BoxFit.contain,
+//                                ),
+//                              ),
+//                              radius: 8.0,
+//                            ),
 
                             SizedBox(width: 2),
 
@@ -216,7 +224,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                           textAlign: TextAlign.left,
                         ),
                         Text(
-                          "FRI 20 MARCH",
+                          DateClass.todayDate(),//"FRI 20 MARCH",
                           style: new TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.normal,

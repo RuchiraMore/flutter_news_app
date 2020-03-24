@@ -1,3 +1,3 @@
-//class NewsEntity {
-//
-//}
+class NewsEntity {
+
+}
