@@ -1,4 +1,5 @@
 import 'package:flutter_news_app/presentation/model/news_list_presentation_model.dart';
+import 'package:rxdart/src/observables/observable.dart';
 
 class NewsListDomain {
 
