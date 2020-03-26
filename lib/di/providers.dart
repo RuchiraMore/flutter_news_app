@@ -1,6 +1,7 @@
 import 'package:flutter_base_architecture/data/local/sharedpreferences/user_stores.dart';
 import 'package:flutter_base_architecture/exception/base_error_handler.dart';
 import 'package:flutter_news_app/data/datasource/check_news_datasource.dart';
+import 'package:flutter_news_app/data/repositories/check_news_repository_impl.dart';
 import 'package:flutter_news_app/datasource/remote/api/news_rest_service.dart';
 import 'package:flutter_news_app/datasource/remote/api/request/check_news_request.dart';
 import 'package:flutter_news_app/datasource/remote/check_news_datastore_impl.dart';
@@ -39,8 +40,9 @@ List<SingleChildCloneableWidget> dependentServices = [
     update: (context,restService,newsRequest) => CheckNewsRequest(restService),
   ),
 
-  ProxyProvider<CheckNewsRequest,CheckNewsDatasource>(
-    update: (context, newsRequest, iRemoteDatasource) => CheckNewsDatasourceImpl(newsRequest),
+
+  ProxyProvider<CheckNewsDatasource, CheckNewsRepository>(
+    update: (context, iRemoteDatasource, iVersionRepository) => CheckNewsRespositoryImpl(iRemoteDatasource),
   ),
 
   ProxyProvider<CheckNewsRepository, CheckNewsUsecase>(
