@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_base_architecture/data/local/sharedpreferences/user_stores.dart';
-import 'package:flutter_news_app/domain/entities/user.dart';
+import 'package:flutter_news_app/domain/model/user.dart';
 
 class NewsDatastore extends UserStore<User> {
 

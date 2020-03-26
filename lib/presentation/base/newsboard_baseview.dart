@@ -6,7 +6,7 @@ import 'package:flutter_base_architecture/exception/base_error_parser.dart';
 import 'package:flutter_base_architecture/ui/base_model_widget.dart';
 import 'package:flutter_base_architecture/ui/base_statefulwidget.dart';
 import 'package:flutter_base_architecture/viewmodels/base_view_model.dart';
-import 'package:flutter_news_app/domain/entities/user.dart';
+import 'package:flutter_news_app/domain/model/user.dart';
 
 abstract class NewsboardBaseview<VM extends BaseViewModel> extends BaseStatefulWidget<VM> {}
 
