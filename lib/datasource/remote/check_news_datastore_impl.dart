@@ -5,6 +5,7 @@ import 'package:flutter_news_app/datasource/remote/api/endpoints.dart';
 import 'package:flutter_news_app/datasource/remote/api/request/check_news_request.dart';
 import 'package:flutter_news_app/datasource/remote/api/response/check_news_response.dart';
 import 'package:flutter_news_app/datasource/store/news_datastore.dart';
+import 'package:flutter_news_app/domain/model/news_list_domain.dart';
 import 'package:flutter_news_app/presentation/base/newsboard_baseview.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:rxdart/src/observables/observable.dart';
@@ -15,7 +16,7 @@ class CheckNewsDatasourceImpl extends CheckNewsDatasource {
   CheckNewsDatasourceImpl(this.checkNewsRequest);
 
   @override
-  Observable<CheckNewsDatasourceModel> getNewsList() {
+  Observable<NewsListDomain> getNewsList() {
     return Observable.fromFuture(checkNewsRequest.apiGetNewsList(Parameter.COUNTRY, Parameter.API_KEY).then((response) {
 
       var newsResponse = CheckNewsResponse(response);

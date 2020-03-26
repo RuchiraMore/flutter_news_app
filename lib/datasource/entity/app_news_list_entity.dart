@@ -1,4 +1,4 @@
-import 'package:flutter_news_app/domain/entities/app_news_entity.dart';
+import 'package:flutter_news_app/domain/model/news_list_domain.dart';
 
 class AppNewsListEntity{
   List<Article> articles;
@@ -96,7 +96,7 @@ class Source {
 
 extension AppNewsEntityExt on AppNewsListEntity {
 
-  News mapToDomain() => News(articles: this.articles.mapToDomain());
+  NewsListDomain mapToDomain() => NewsListDomain(articles: this.articles.mapToDomain());
 }
 
 extension ArticleExt on Article {

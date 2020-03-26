@@ -1,3 +1,2 @@
-class CheckNewsDatasourceModel {
-
-}
+//class CheckNewsDatasourceModel {
+//}
