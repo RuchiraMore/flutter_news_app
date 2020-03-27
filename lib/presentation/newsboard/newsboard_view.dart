@@ -23,6 +23,9 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
       viewModel: getViewModel(),
       onModelReady: (model){
         print('new model is ready');
+        model.fetchNewsList(onSuccess: (success){
+          print('News list data fetched successfully-> ${success.articles}');
+        });
       },
       builder: (BuildContext context, NewsboardViewmodel model, Widget child){
         return NewsboardViewUi();

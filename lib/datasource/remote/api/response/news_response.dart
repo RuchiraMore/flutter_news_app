@@ -16,8 +16,10 @@ abstract class NewsResponse<T> extends RESTResponse<T>{
     print("RESTResponse:: Decrypted: " + response.toString());
     Map<String, dynamic> responseObject = response;
     try {
+
       NewsResponseDto _responseDto =
       NewsResponseDto.map(responseObject, this.response.statusCode);
+
       if (_responseDto.code != 200) {
         getErrors().add(BaseError(
             message: _responseDto?._message,

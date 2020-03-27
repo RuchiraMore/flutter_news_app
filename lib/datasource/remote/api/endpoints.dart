@@ -1,4 +1,5 @@
 class EndPoints {
+  static const TOP_HEADLINES = 'top-headlines?country=' + Parameter.COUNTRY;
 }
 
 class Parameter {
