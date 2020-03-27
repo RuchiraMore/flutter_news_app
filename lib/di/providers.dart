@@ -37,19 +37,23 @@ List<SingleChildCloneableWidget> dependentServices = [
   ),
 
   ProxyProvider<NewsRESTService,CheckNewsRequest>(
-    update: (context,restService,newsRequest) => CheckNewsRequest(restService),
+    update: (context,restService,newsRequest) =>
+        CheckNewsRequest(restService),
   ),
 
+  ProxyProvider<CheckNewsRequest,CheckNewsDatasource>(
+    update: (context, newsRequest, iRemoteDatasource) =>
+        CheckNewsDatasourceImpl(newsRequest),
+  ),
 
   ProxyProvider<CheckNewsDatasource, CheckNewsRepository>(
-    update: (context, iRemoteDatasource, iVersionRepository) => CheckNewsRespositoryImpl(iRemoteDatasource),
+    update: (context, iRemoteDatasource, iVersionRepository) =>
+        CheckNewsRespositoryImpl(iRemoteDatasource),
   ),
 
   ProxyProvider<CheckNewsRepository, CheckNewsUsecase>(
     update: (context, inewsRepository, newsUseCase) =>
         CheckNewsUsecase(inewsRepository),
   ),
-
-
 
 ];

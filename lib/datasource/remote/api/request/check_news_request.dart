@@ -1,7 +1,6 @@
 import 'package:flutter_base_architecture/data/remote/rest_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_news_app/datasource/remote/api/const_api_identifier.dart';
-import 'package:flutter_news_app/datasource/remote/api/endpoints.dart';
 import 'package:flutter_news_app/datasource/remote/api/request/news_request.dart';
 
 class CheckNewsRequest extends NewsRequest {
