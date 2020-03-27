@@ -1,6 +1,7 @@
 import 'package:flutter_news_app/domain/model/news_list_domain.dart';
 
 class AppNewsListEntity{
+
   List<Article> articles;
   String status;
   int totalResults;

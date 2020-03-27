@@ -66,7 +66,6 @@ class ArticleList {
 extension NewsListDomainExt on NewsListDomain {
 
   NewsListPresentationModel mapToPresentation() => NewsListPresentationModel(articles: this.articles.mapToPresentation());
-
 }
 
 extension ArticleListExt on ArticleList {

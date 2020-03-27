@@ -12,8 +12,8 @@ class CheckNewsUsecase extends BaseUsecase<NewsListPresentationModel, CheckNewsU
   @override
   Observable<NewsListPresentationModel> buildUsecaseObservable({CheckNewsUsecaseParams params}) {
 
-    return checkNewsRepository.getNewsList().asyncMap((appNewsResponse) {
-      return appNewsResponse.mapToPresentation();
+    return checkNewsRepository.getNewsLists().asyncMap((appNewsResponse) {
+//      return appNewsResponse.mapToPresentation();
     });
   }
 }

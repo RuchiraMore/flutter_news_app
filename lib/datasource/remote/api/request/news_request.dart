@@ -22,6 +22,6 @@ abstract class NewsRequest extends RESTRequest {
     }
 
     return super.execute(endpoint, params, apiCallMethod, apiIdentifier);
-
   }
+
 }

@@ -22,11 +22,15 @@ abstract class NewsResponse<T> extends RESTResponse<T>{
 
       if (_responseDto.code != 200) {
         getErrors().add(BaseError(
-            message: _responseDto?._message,
+            message: _responseDto?._status,
             type: BaseErrorType.SERVER_MESSAGE));
         return;
       }
-      parseResponseData(_responseDto.data, super.apiIdenfier);
+
+//      parseResponseData(_responseDto, super.apiIdenfier);
+
+      parseResponseData(_responseDto._articles, super.apiIdenfier);
+
     } catch (error) {
       getErrors().add(BaseError(
           message: error.toString(),
@@ -42,32 +46,34 @@ abstract class NewsResponse<T> extends RESTResponse<T>{
 }
 
 class NewsResponseDto{
-  bool _status;
-  String _message = "";
+  String _status;
+  int _totalResults = 0;
   int _code;
-  dynamic _data;
+  dynamic _articles;
+//  List<ArticleDto> _articles;
 
-  bool get status => _status;
-  String get message => _message;
+
+  String get status => _status;
+  int get totalResults => _totalResults;
   int get code => _code;
-  dynamic get data => _data;
+  dynamic get articles => _articles;
 
-  NewsResponseDto(this._status, this._message, this._code, this._data);
+  NewsResponseDto(this._status, this._totalResults, this._code, this._articles);
 
   NewsResponseDto.map(dynamic obj, int statusCode) {
-    this._status = obj["success"];
-    this._message = obj["message"];
+    this._status = obj["status"];//["success"];
+    this._totalResults = obj["totalResults"];
     this._code = statusCode; //200;//obj["code"];
-    this._data = obj["data"];
-    //this._errors = obj["errors"];
+    this._articles = obj["articles"];//["data"];
+//    this._errors = obj["errors"];
   }
 
   Map<String, dynamic> toMap() {
     var map = new Map<String, dynamic>();
-    map["success"] = _status;
-    map["message"] = _message;
+    map["status"] = _status;
+    map["totalResults"] = _totalResults;
     map["code"] = _code;
-    map["data"] = _data;
+    map["articles"] = _articles;
     //map["error"] = _errors;
     return map;
   }
