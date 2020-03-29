@@ -5,7 +5,7 @@ import 'package:flutter_news_app/datasource/remote/api/const_api_identifier.dart
 import 'package:flutter_news_app/datasource/remote/api/response/news_response.dart';
 import 'package:flutter_news_app/domain/model/news_list_domain.dart';
 
-class CheckNewsResponse extends NewsResponse<List<Article>>{//AppNewsListEntity
+class CheckNewsResponse extends NewsResponse<AppNewsListEntity>{//AppNewsListEntity
 
   CheckNewsResponse(Response response) : super(response);
 
@@ -14,9 +14,9 @@ class CheckNewsResponse extends NewsResponse<List<Article>>{//AppNewsListEntity
     switch(apiIdentifier){
       case ApiIdentifier.API_GET_NEWS :
         try{
-//          AppNewsListEntity newsEntity = AppNewsListEntity.fromJson(dataArray);
-          List<Article> articleEntity = (dataArray as List).map((i) => Article.fromJson(i)).toList();
-          getData().add(articleEntity);
+          AppNewsListEntity newsEntity = AppNewsListEntity.fromJson(dataArray);
+//          List<Article> articleEntity = (dataArray as List).map((i) => Article.fromJson(i)).toList();
+          getData().add(newsEntity);
         }
         catch (e) {
           getErrors().add(BaseError(message: e));

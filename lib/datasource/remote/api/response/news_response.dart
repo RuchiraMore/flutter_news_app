@@ -29,7 +29,7 @@ abstract class NewsResponse<T> extends RESTResponse<T>{
 
 //      parseResponseData(_responseDto, super.apiIdenfier);
 
-      parseResponseData(_responseDto._articles, super.apiIdenfier);
+      parseResponseData(_responseDto.toMap(), super.apiIdenfier);
 
     } catch (error) {
       getErrors().add(BaseError(

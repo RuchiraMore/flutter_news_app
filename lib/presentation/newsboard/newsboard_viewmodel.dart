@@ -19,18 +19,21 @@ class NewsboardViewmodel extends BaseViewModel {
   Function(NewsListPresentationModel presentationModel) onSuccess,
   Function(String message) onError}) async {
 
-    notifyListeners();
+    setBusy(false);
+    //notifyListeners();
 
     addCompositeDisposable(
+
       checkNewsUsecase.buildUsecaseObservable(
           params: CheckNewsUsecaseParams()
       ).listen((newsListData){
+
         this.newsList = newsListData;
 
-        print('news list data in presentation model -> $this.newsList');
-
+        print('news list data in presentation model ->');
 
         setBusy(false);
+
       }, onError: (error) {
         setBusy(false);
         print('news loading error ->'+ error.toString());

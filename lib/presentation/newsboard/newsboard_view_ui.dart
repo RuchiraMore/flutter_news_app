@@ -8,11 +8,23 @@ import 'package:flutter_news_app/utils/date_class.dart';
 
 class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
+  final _biggerFont = const TextStyle(fontSize: 18.0);
+
   var myImgList = ["assets/images/netflix_logo.png","assets/images/netflix_logo.png","assets/images/netflix_logo.png"];
 
   _movieSelector(int index, NewsboardViewmodel model) {
 
     print("navigating from Index--> $index");
+
+//    var publishedTime = DateClass.convertDateToTime(model.newsList.articles[index].publishedAt);
+//    print('date published' + publishedTime);
+
+    String link = model.newsList.articles[index].publishedAt;
+    List trimTime = link.split('T');
+    String trimmedTime = trimTime.last;
+    List trimHours = trimmedTime.split(':');
+    String publishedHours = trimHours.first + ' hours ago';
+
 
     return AnimatedBuilder(
       animation: model.pageController,
@@ -54,12 +66,18 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                 tag: index,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
-                  child: Image(
-                    image: AssetImage("assets/images/breaking-news.jpg"),
-                    height: 500,//250.0,
-                    width: 500,//300.0,
-                    fit: BoxFit.fill,
+                  child: Image.network(
+                    model.newsList.articles[index].urlToImage,
+                    fit: BoxFit.cover,
+                    height: 500,
+                    width: 500,
                   ),
+//                  Image(
+//                    image: AssetImage(model.newsList.articles[index].urlToImage),//"assets/images/breaking-news.jpg"
+//                    height: 500,//250.0,
+//                    width: 500,//300.0,
+//                    fit: BoxFit.fill,
+//                  ),
                 ),
               ),
             ),
@@ -93,7 +111,9 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
           child: Container(
 //            color: Colors.lime,
             width: 280,
-            child: Text("Drones: A Bird's Eye View of Photographer",
+            child: Text(model.newsList.articles[index].title,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -138,7 +158,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                     children: <Widget>[
 
                       Text(
-                        "Jone Green",
+                        model.newsList.articles[index].source.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -170,7 +190,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                             SizedBox(width: 2),
 
                             Text(
-                              "10 hours ago",
+                              publishedHours,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.normal,
@@ -197,65 +217,64 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
     print('inside newsboard class ');
 
-    return Container(
-      color: Colors.white,
-      child: ListView(
-        primary: true,
-        children: <Widget>[
-          
-          ///First - Header View
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: new Container(
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: new Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          "Technology",
-                          style: new TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                        Text(
-                          DateClass.todayDate(),//"FRI 20 MARCH",
-                          style: new TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.red,
-                          ),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: Container(
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: Image.asset(
-                            AssetIcons.user_logo,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        radius: 25,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      itemCount: 3,
+      itemBuilder:(context, i) {
 
+        if (i == 0) {
+          ///First - Header View
+          return Container(
+            padding: const EdgeInsets.all(20),
+            color: Colors.white,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: new Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        "Technology",
+                        style: new TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        DateClass.todayDate(),//"FRI 20 MARCH",
+                        style: new TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.red,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Container(
+                    child: CircleAvatar(
+                      child: ClipOval(
+                        child: Image.asset(
+                          AssetIcons.user_logo,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      radius: 25,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
+        else if (i == 1) {
           ///Second - News slider container view
-          Container(
+          return Container(
             width: double.infinity,
             height: 300.0,
             child: PageView.builder(
@@ -265,18 +284,120 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                 return _movieSelector(index, model);
               },
             ),
-          ),
-
+          );
+        }
+        else if (i == 2) {
           //Third - Display Popular list
-          ContentScroll(
-            images: myImgList,
+          return ContentScroll(
+            newsList: model.newsList.articles,
             title: ConstantsHeader.HeaderPopular,
             subtitle: "Show more",
             imageHeight: 150.0,
             imageWidth: 500.0,
-          ),
-        ],
-      ),
+          );
+
+//          return Container(
+//            height: (model.newsList.articles.length * 100).toDouble(),
+//            child:
+//              ListView.builder(
+//                  itemCount: model.newsList.articles.length,
+//                  padding: const EdgeInsets.all(16.0),
+//                  itemBuilder:(context, i) {
+//                    return new Text(model.newsList.articles[i].title);
+//                  }),
+//          );
+        }
+      }
+
+//        primary: true,
+//        children: <Widget>[
+//
+//          ///First - Header View
+//          new Container(
+//            padding: const EdgeInsets.all(20),
+//            color: Colors.white,
+//            child: Row(
+//              children: <Widget>[
+//                Expanded(
+//                  child: new Column(
+//                    crossAxisAlignment: CrossAxisAlignment.start,
+//                    children: <Widget>[
+//                      Text(
+//                        "Technology",
+//                        style: new TextStyle(
+//                          fontSize: 30,
+//                          fontWeight: FontWeight.bold,
+//                          color: Colors.black,
+//                        ),
+//                        textAlign: TextAlign.left,
+//                      ),
+//                      Text(
+//                        DateClass.todayDate(),//"FRI 20 MARCH",
+//                        style: new TextStyle(
+//                          fontSize: 16,
+//                          fontWeight: FontWeight.normal,
+//                          color: Colors.red,
+//                        ),
+//                        textAlign: TextAlign.left,
+//                      ),
+//                    ],
+//                  ),
+//                ),
+//                Padding(
+//                  padding: const EdgeInsets.only(right: 10),
+//                  child: Container(
+//                    child: CircleAvatar(
+//                      child: ClipOval(
+//                        child: Image.asset(
+//                          AssetIcons.user_logo,
+//                          fit: BoxFit.contain,
+//                        ),
+//                      ),
+//                      radius: 25,
+//                    ),
+//                  ),
+//                ),
+//              ],
+//            ),
+//          ),
+//
+//          ///Second - News slider container view
+//          Container(
+//            width: double.infinity,
+//            height: 300.0,
+//            child: PageView.builder(
+//              controller: model.pageController,
+//              itemCount: 5,
+//              itemBuilder: (BuildContext context, int index){
+//                return _movieSelector(index, model);
+//              },
+//            ),
+//          ),
+//
+//          //Third - Display Popular list
+////          ContentScroll(
+////            images: myImgList,
+////            title: ConstantsHeader.HeaderPopular,
+////            subtitle: "Show more",
+////            imageHeight: 150.0,
+////            imageWidth: 500.0,
+////          ),
+//
+//
+//        ListView.builder(
+//            itemCount: model.newsList.articles.length,
+//            padding: const EdgeInsets.all(16.0),
+//            itemBuilder:(context, i) {
+//
+//             return Text(model.newsList.articles[i].title,
+//             style: TextStyle(
+//               color: Colors.black
+//             ),);
+//         }),
+
+//        _buildNewsList(model),
+
+//        ],
     );
   }
 }

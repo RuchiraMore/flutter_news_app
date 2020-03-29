@@ -17,6 +17,11 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
   }
 
   @override
+  Color scaffoldColor() {
+    return Colors.white;
+  }
+
+  @override
   Widget buildBody() {
 
     return BaseWidget<NewsboardViewmodel>(
@@ -37,4 +42,5 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
   NewsboardViewmodel initViewModel() {
     return NewsboardViewmodel(Provider.of(context));
   }
+
 }

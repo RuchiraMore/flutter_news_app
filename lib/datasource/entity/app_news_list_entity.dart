@@ -42,7 +42,7 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
-      author: json['author'] != null ? json['author'] : null,
+      author: json['author'] != null ? json['author'] : null ?? '',
       content: json['content'],
       description: json['description'],
       publishedAt: json['publishedAt'],
@@ -61,9 +61,10 @@ class Article {
     data['title'] = this.title;
     data['url'] = this.url;
     data['urlToImage'] = this.urlToImage;
-    if (this.author != null) {
-      data['author'] = this.author;
-    }
+    data['author'] = this.author ?? '';
+//    if (this.author != null) {
+//      data['author'] = this.author;
+//    }
     if (this.source != null) {
       data['source'] = this.source.toJson();
     }
@@ -97,23 +98,24 @@ class Source {
 
 extension AppNewsEntityExt on AppNewsListEntity {
 
-  NewsListDomain mapToDomain() => NewsListDomain(articles: this.articles.mapToDomain());
+  NewsListDomain mapToDomain() => NewsListDomain(articles: this.articles);
+
 }
 
-extension ArticleExt on Article {
-  ArticleList mapToDomain() => ArticleList(
-      author:this.author,
-      title:this.title,
-      description:this.description,
-      url:this.url,
-      urlToImage:this.urlToImage,
-      publishedAt:this.publishedAt,
-      content:this.content
-      );
-}
+//extension ArticleExt on Article {
+//  Article mapToDomain() => Article(
+//      author:this.author,
+//      title:this.title,
+//      description:this.description,
+//      url:this.url,
+//      urlToImage:this.urlToImage,
+//      publishedAt:this.publishedAt,
+//      content:this.content
+//      );
+//}
 
-extension ResultsNewsListEntityExt on List<Article> {
-  List<ArticleList> mapToDomain() => this.map((e) {
-    return e.mapToDomain();
-  }).toList();
-}
+//extension ResultsNewsListEntityExt on List<Article> {
+//  List<Article> mapToDomain() => this.map((e) {
+//    return e.mapToDomain();
+//  }).toList();
+//}

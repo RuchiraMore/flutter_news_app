@@ -14,7 +14,7 @@ class CheckNewsDatasourceImpl extends CheckNewsDatasource {
   CheckNewsDatasourceImpl(this.checkNewsRequest);
 
   @override
-  Observable<List<Article>> getNewsLists() {//NewsListDomain //getNewsLists
+  Observable<NewsListDomain> getNewsList() {//NewsListDomain //getNewsLists
     return Observable.fromFuture(checkNewsRequest.apiGetNewsList(
         Parameter.COUNTRY,
         Parameter.API_KEY).then((response) {
@@ -28,7 +28,7 @@ class CheckNewsDatasourceImpl extends CheckNewsDatasource {
       }
 
       try{
-        return newsResponse.getData().first;//mapToDomain();
+        return newsResponse.getData().first.mapToDomain();
       }
       catch (e) {
         throw NewsboardError(

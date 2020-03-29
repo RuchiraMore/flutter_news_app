@@ -10,4 +10,11 @@ class DateClass {
     print(formattedDate);
     return formattedDate.toUpperCase();
   }
+
+  static convertDateToTime(publishedDate){
+    var formattedTime = DateFormat('kk');
+    print('error date'+formattedTime.format(publishedDate));
+
+    return formattedTime.format(publishedDate);
+  }
 }

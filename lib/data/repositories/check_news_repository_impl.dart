@@ -11,8 +11,7 @@ class CheckNewsRespositoryImpl extends CheckNewsRepository {
   CheckNewsRespositoryImpl(this.checkNewsRemoteDatasource);
 
   @override
-  Observable<List<Article>> getNewsLists() {//NewsListDomain
-    return checkNewsRemoteDatasource.getNewsLists();//getNewsList
+  Observable<NewsListDomain> getNewsList() {
+    return checkNewsRemoteDatasource.getNewsList();
   }
-
 }
