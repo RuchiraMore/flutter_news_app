@@ -15,5 +15,5 @@ class AssetIcons {
 }
 
 class ConstantsHeader {
-  static const String HeaderPopular = 'Popular';
+  static const String HeaderAllNews = 'ALL NEWS';
 }

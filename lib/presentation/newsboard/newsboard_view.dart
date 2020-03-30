@@ -12,6 +12,8 @@ class NewsBoardView extends NewsboardBaseview<NewsboardViewmodel> {
 
 class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardView> {
 
+  bool _progressController = true;
+
   NewsboardScreen() : super(){
     setRequiresLogin(false);
   }
@@ -19,6 +21,15 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
   @override
   Color scaffoldColor() {
     return Colors.white;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    setState(() {
+      _progressController = false;
+    });
   }
 
   @override
@@ -33,7 +44,9 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
         });
       },
       builder: (BuildContext context, NewsboardViewmodel model, Widget child){
-        return NewsboardViewUi();
+        return _progressController
+            ? CircularProgressIndicator()
+            : NewsboardViewUi();
       },
     );
   }

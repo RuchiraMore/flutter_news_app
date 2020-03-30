@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_news_app/constant/asset_icons.dart';
 import 'package:flutter_news_app/datasource/entity/app_news_list_entity.dart';
+import 'package:flutter_news_app/presentation/newsboardDetails/newsboard_details_view.dart';
 
 class ContentScroll extends StatelessWidget {
 
@@ -24,6 +25,100 @@ class ContentScroll extends StatelessWidget {
       List trimHours = trimmedTime.split(':');
       String publishedHours = trimHours.first + ' hours ago';
       return publishedHours;
+    }
+
+    _displayNewsDetails(index){
+      return Container(
+
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  newsList[index].urlToImage,
+                  fit: BoxFit.cover,
+                  height: 100,
+                  width: 100,
+                ),
+              ),
+            ),
+
+
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10,top: 10),
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      newsList[index].title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22.0,
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Container(
+                        child: Row(
+                          children: <Widget>[
+
+                            Icon(
+                              Icons.access_time,
+                              color: Colors.black54,
+                              size: 25.0,
+                            ),
+
+                            SizedBox(width: 2),
+                            Text(
+                              _getTime(index),
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.normal
+                              ),
+                            ),
+
+                            SizedBox(width: 25),
+
+                            Icon(
+                              Icons.bookmark_border,
+                              color: Colors.black54,
+                              size: 25.0,
+                            ),
+
+                            SizedBox(width: 2),
+                            Text(
+                              "50",
+                              style: TextStyle(
+                                  color: Colors.black54,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.normal
+                              ),
+                            ),
+
+
+                          ],
+                        ),
+                      ),
+                    )
+
+                  ],
+                ),
+              ),
+            ),
+
+          ],
+        ),
+
+      );
     }
 
     return Column(
@@ -74,95 +169,17 @@ class ContentScroll extends StatelessWidget {
 //                scrollDirection: Axis.vertical,//horizontal,
                 itemCount: newsList.length,//images.length,
                 itemBuilder: (BuildContext context, int index){
-                  return Container(
-
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-
-                        Padding(
-                          padding: EdgeInsets.all(10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              newsList[index].urlToImage,
-                              fit: BoxFit.cover,
-                              height: 100,
-                              width: 100,
-                            ),
-                          ),
-                        ),
-
-
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10,top: 10),
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                  newsList[index].title,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22.0,
-                                  ),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Container(
-                                    child: Row(
-                                      children: <Widget>[
-
-                                        Icon(
-                                          Icons.access_time,
-                                          color: Colors.black54,
-                                          size: 25.0,
-                                        ),
-
-                                        SizedBox(width: 2),
-                                        Text(
-                                          _getTime(index),
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.normal
-                                          ),
-                                        ),
-
-                                        SizedBox(width: 25),
-
-                                        Icon(
-                                          Icons.bookmark_border,
-                                          color: Colors.black54,
-                                          size: 25.0,
-                                        ),
-
-                                        SizedBox(width: 2),
-                                        Text(
-                                          "50",
-                                          style: TextStyle(
-                                              color: Colors.black54,
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.normal
-                                          ),
-                                        ),
-
-
-                                      ],
-                                    ),
-                                  ),
-                                )
-
-                              ],
-                            ),
-                          ),
-                        ),
-
-                      ],
+                  return new GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) =>
+                            NewsBoardDetailsView(
+                              indexTag: 'NewsTag-$index',
+                              newsDetails: newsList[index],
+                            )
+                        )
                     ),
+                    child: _displayNewsDetails(index),
                   );
                 },
               ),
