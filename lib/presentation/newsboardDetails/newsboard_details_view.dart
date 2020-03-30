@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_news_app/datasource/entity/app_news_list_entity.dart';
+import 'package:flutter_news_app/utils/date_class.dart';
 import 'package:flutter_news_app/utils/read_more_text.dart';
 
 class NewsBoardDetailsView extends StatefulWidget{
@@ -28,12 +29,6 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
     print(widget.newsDetails.title);
 
     double heightDevice = MediaQuery.of(context).size.height;
-
-    String link = widget.newsDetails.publishedAt;
-    List trimTime = link.split('T');
-    String trimmedTime = trimTime.last;
-    List trimHours = trimmedTime.split(':');
-    String publishedHours = trimHours.first + ' hours ago';
 
     return Scaffold(
       backgroundColor: Colors.grey,
@@ -70,7 +65,7 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
 
               //Top Header Image
               Container(
-                height: 400,
+                height: heightDevice * 0.5,//400,
                 child: Hero(
                   tag: widget.indexTag,
                   child: Image.network(
@@ -83,12 +78,15 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
 
               //News details card
             Padding(
-                  padding: EdgeInsets.only(top: 340),
+                  padding: EdgeInsets.only(top: heightDevice * 0.4),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.only(
+                      topLeft: const Radius.circular(30),
+                      topRight: const Radius.circular(30),
+                    ),
                     child: Container(
                       color: Colors.white,
-                      height: heightDevice - 300,
+                      height: heightDevice * 0.6,//heightDevice - 300,
 
                       child: Column(
                         children: <Widget>[
@@ -163,7 +161,7 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
                                       SizedBox(width: 2),
 
                                       Text(
-                                        publishedHours,
+                                        DateClass.convertDateToTime(widget.newsDetails.publishedAt),
                                         style: TextStyle(
                                           color: Colors.black54,
                                           fontWeight: FontWeight.normal,

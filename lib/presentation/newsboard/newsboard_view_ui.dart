@@ -15,13 +15,6 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 
     print("navigating from Index--> $index");
 
-    String link = model.newsList.articles[index].publishedAt;
-    List trimTime = link.split('T');
-    String trimmedTime = trimTime.last;
-    List trimHours = trimmedTime.split(':');
-    String publishedHours = trimHours.first + ' hours ago';
-
-
     return AnimatedBuilder(
       animation: model.pageController,
       builder: (BuildContext context,Widget widget){
@@ -198,7 +191,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                               SizedBox(width: 2),
 
                               Text(
-                                publishedHours,
+                                DateClass.convertDateToTime(model.newsList.articles[index].publishedAt),
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
@@ -254,7 +247,7 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                         textAlign: TextAlign.left,
                       ),
                       Text(
-                        DateClass.todayDate(),//"FRI 20 MARCH",
+                        DateClass.todayDate(),
                         style: new TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/constant/asset_icons.dart';
 import 'package:flutter_news_app/datasource/entity/app_news_list_entity.dart';
 import 'package:flutter_news_app/presentation/newsboardDetails/newsboard_details_view.dart';
+import 'package:flutter_news_app/utils/date_class.dart';
 
 class ContentScroll extends StatelessWidget {
 
@@ -17,15 +18,6 @@ class ContentScroll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    _getTime(index){
-      String link = newsList[index].publishedAt;
-      List trimTime = link.split('T');
-      String trimmedTime = trimTime.last;
-      List trimHours = trimmedTime.split(':');
-      String publishedHours = trimHours.first + ' hours ago';
-      return publishedHours;
-    }
 
     _displayNewsDetails(index){
       return Container(
@@ -78,7 +70,7 @@ class ContentScroll extends StatelessWidget {
 
                             SizedBox(width: 2),
                             Text(
-                              _getTime(index),
+                              DateClass.convertDateToTime(newsList[index].publishedAt),
                               style: TextStyle(
                                   color: Colors.black54,
                                   fontSize: 16.0,

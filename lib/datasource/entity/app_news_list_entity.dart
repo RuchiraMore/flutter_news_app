@@ -95,7 +95,6 @@ class Source {
   }
 }
 
-
 extension AppNewsEntityExt on AppNewsListEntity {
 
   NewsListDomain mapToDomain() => NewsListDomain(articles: this.articles);
