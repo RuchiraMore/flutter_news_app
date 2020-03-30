@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_news_app/datasource/entity/app_news_list_entity.dart';
+import 'package:flutter_news_app/utils/read_more_text.dart';
 
 class NewsBoardDetailsView extends StatefulWidget{
 
@@ -64,11 +65,6 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
         padding: EdgeInsets.zero,
         children: <Widget>[
 
-//          Container(
-//            height: heightDevice,
-//            child:
-//          ),
-
           Stack(
             children: <Widget>[
 
@@ -86,109 +82,62 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
               ),
 
               //News details card
-              Padding(
-                padding: EdgeInsets.only(top: 340),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Container(
-                    color: Colors.white,
-                    height: heightDevice - 100,
+            Padding(
+                  padding: EdgeInsets.only(top: 340),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30),
+                    child: Container(
+                      color: Colors.white,
+                      height: heightDevice - 300,
 
-                    child: Column(
-                      children: <Widget>[
+                      child: Column(
+                        children: <Widget>[
 
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: Text(
-                            widget.newsDetails.title,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
+                          Padding(
+                            padding: const EdgeInsets.all(30.0),
+                            child: Text(
+                              widget.newsDetails.title,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold
+                              ),
                             ),
                           ),
-                        ),
 
-                        Row(
-                          children: <Widget>[
-                            ///set Reporter image
-                            Padding(
-                              padding: const EdgeInsets.only(left: 20),
-                              child: Container(
-                                child: CircleAvatar(
-                                  child: ClipOval(
-                                    child: Image.asset(
-                                      "assets/images/user_logo.png",
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                  radius: 25.0,
-                                ),
-                              ),
-                            ),
-
-                            ///for handling space
-                            SizedBox(width: 10),
-
-                            ///set Reporter name and news time
-                            Expanded(
-                              child: new Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-
-                                  Text(
-                                    widget.newsDetails.source.name,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Row(
+                          Row(
                             children: <Widget>[
-                              Container(
-                                child: Row(
-                                  children: <Widget>[
-
-                                    Icon(
-                                      Icons.access_time,
-                                      color: Colors.black54,
-                                      size: 25.0,
-                                    ),
-
-                                    SizedBox(width: 2),
-
-                                    Text(
-                                      publishedHours,
-                                      style: TextStyle(
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 18.0,
+                              ///set Reporter image
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: Container(
+                                  child: CircleAvatar(
+                                    child: ClipOval(
+                                      child: Image.asset(
+                                        "assets/images/user_logo.png",
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
+                                    radius: 25.0,
+                                  ),
+                                ),
+                              ),
 
-                                    SizedBox(width: 30),
+                              ///for handling space
+                              SizedBox(width: 10),
 
-                                    Icon(
-                                      Icons.bookmark_border,
-                                      color: Colors.black54,
-                                      size: 25.0,
-                                    ),
+                              ///set Reporter name and news time
+                              Expanded(
+                                child: new Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
 
                                     Text(
-                                      '50',
+                                      widget.newsDetails.source.name,
                                       style: TextStyle(
-                                        color: Colors.black54,
-                                        fontWeight: FontWeight.normal,
-                                        fontSize: 18.0,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
                                       ),
                                     ),
                                   ],
@@ -196,25 +145,86 @@ class NewsboardDetailsScreen extends State<NewsBoardDetailsView>{
                               ),
                             ],
                           ),
-                        ),
-                        
-                        Padding(
-                          padding: EdgeInsets.only(left: 20,right: 20),
-                          child: Container(
-                            child: Text(
-                              widget.newsDetails.description,
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
+
+                          Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  child: Row(
+                                    children: <Widget>[
+
+                                      Icon(
+                                        Icons.access_time,
+                                        color: Colors.black54,
+                                        size: 25.0,
+                                      ),
+
+                                      SizedBox(width: 2),
+
+                                      Text(
+                                        publishedHours,
+                                        style: TextStyle(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+
+                                      SizedBox(width: 30),
+
+                                      Icon(
+                                        Icons.bookmark_border,
+                                        color: Colors.black54,
+                                        size: 25.0,
+                                      ),
+
+                                      Text(
+                                        '50',
+                                        style: TextStyle(
+                                          color: Colors.black54,
+                                          fontWeight: FontWeight.normal,
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 20,right: 20),
+                                child: ReadMoreText(
+                                  widget.newsDetails.description,
+                                  trimLines: 2,
+                                  colorClickableText: Colors.pink,
+                                  trimMode: TrimMode.Line,
+                                  trimCollapsedText: '...Read more',
+                                  trimExpandedText: ' Read less',
+                                ),
+
+//                        child: Text(
+//                              widget.newsDetails.description,
+//                              style: TextStyle(
+//                                color: Colors.black87,
+//                                fontSize: 16,
+//                              ),
+//                            ),
+
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
+
             ],
           ),
         ],
