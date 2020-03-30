@@ -11,6 +11,8 @@ class NewsboardViewmodel extends BaseViewModel {
 
   NewsListPresentationModel newsList;
 
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+
   PageController _pageController = PageController(initialPage: 0,viewportFraction: 0.8);
   PageController get pageController => _pageController;
 
