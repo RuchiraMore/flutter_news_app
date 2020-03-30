@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_news_app/presentation/newsboard/newsboard_view.dart';
 import 'package:flutter_news_app/presentation/newsboardDetails/newsboard_details_view.dart';
 import 'package:flutter_news_app/route_paths.dart';
+import 'presentation/splash/splash_view.dart';
 
 class Router {
   
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RoutePaths.Splash:
+        return MaterialPageRoute(builder: (_) => SplashView());
+        break;
       case RoutePaths.NewsBoard:
         return MaterialPageRoute(builder: (_) => NewsBoardView());
       case RoutePaths.NewsBoardDetails:

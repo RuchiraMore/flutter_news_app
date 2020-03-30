@@ -14,6 +14,9 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
 
   bool _progressController = true;
 
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+
+
   NewsboardScreen() : super(){
     setRequiresLogin(false);
   }
@@ -30,6 +33,14 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
     setState(() {
       _progressController = false;
     });
+  }
+
+  Future<Null> refreshNewsList(){
+    refreshKey.currentState.show(atTop: false);
+    setState((){
+
+    }
+    );
   }
 
   @override

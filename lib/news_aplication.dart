@@ -11,17 +11,11 @@ class NewsApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-//    return MaterialApp(
-//        debugShowCheckedModeBanner: false,
-//        initialRoute: RoutePaths.NewsBoard,
-//        onGenerateRoute: Router.generateRoute,
-//      );
-
     return MultiProvider(
       providers: providers,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: RoutePaths.NewsBoard,
+        initialRoute: RoutePaths.Splash,
         onGenerateRoute: Router.generateRoute,
       ),
     );
