@@ -19,8 +19,8 @@ class NewsboardViewmodel extends BaseViewModel {
   Function(NewsListPresentationModel presentationModel) onSuccess,
   Function(String message) onError}) async {
 
-    setBusy(false);
-    //notifyListeners();
+    setBusy(true);
+//    notifyListeners();
 
     addCompositeDisposable(
 
@@ -33,6 +33,7 @@ class NewsboardViewmodel extends BaseViewModel {
         print('news list data in presentation model ->');
 
         setBusy(false);
+//        notifyListeners();
 
       }, onError: (error) {
         setBusy(false);

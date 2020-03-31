@@ -12,6 +12,7 @@ class SplashView extends StatefulWidget {
   @override
   SplashPageScreen createState() => new SplashPageScreen();
 }
+
 class SplashPageScreen extends State<SplashView> {
 
   startTime() async {

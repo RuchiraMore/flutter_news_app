@@ -12,10 +12,7 @@ class NewsBoardView extends NewsboardBaseview<NewsboardViewmodel> {
 
 class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardView> {
 
-  bool _progressController = true;
-
-  var refreshKey = GlobalKey<RefreshIndicatorState>();
-
+  final GlobalKey<RefreshIndicatorState> refreshKey = new GlobalKey<RefreshIndicatorState>();
 
   NewsboardScreen() : super(){
     setRequiresLogin(false);
@@ -29,18 +26,15 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
   @override
   void initState() {
     super.initState();
-
-    setState(() {
-      _progressController = false;
-    });
   }
 
-  Future<Null> refreshNewsList(){
+  Future<Null> refreshNewsList() async {
+    print('refreshing news');
     refreshKey.currentState.show(atTop: false);
     setState((){
-
-    }
-    );
+      NewsboardViewUi();
+    });
+//    return null;
   }
 
   @override
@@ -55,9 +49,11 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
         });
       },
       builder: (BuildContext context, NewsboardViewmodel model, Widget child){
-        return _progressController
-            ? CircularProgressIndicator()
-            : NewsboardViewUi();
+        return model.busy
+            ? Center(child: CircularProgressIndicator())
+            : (model.newsList != null && model.newsList.articles.length >= 0)
+            ? RefreshIndicator(key: refreshKey, onRefresh: refreshNewsList,child: NewsboardViewUi())
+            : Container(color: Colors.red,);
       },
     );
   }
