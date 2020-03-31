@@ -15,6 +15,8 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
   _newsSelector(int index, NewsboardViewmodel model) {
 
     print("navigating from Index--> $index");
+    String url = model.newsList.articles[index].urlToImage;
+    print('urlToImage -> $url');
 
     return AnimatedBuilder(
       animation: model.pageController,
@@ -101,7 +103,6 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                   ),
                   onPressed: (){
                     print("Bookmark icon tappeed");
-
                 })
             ),
           ),
@@ -313,7 +314,6 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 //          );
           }
         }
-
 //        primary: true,
 //        children: <Widget>[
 //
@@ -405,16 +405,5 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
 //        ],
       );
   }
-
-//
-//  Future<Null> refreshNewsList() {
-//    print('refreshing news');
-////    refreshKey.currentState.show(atTop: false);
-//
-//    setState((){
-//      NewsboardViewUi();
-//    });
-////    return null;
-//  }
 
 }

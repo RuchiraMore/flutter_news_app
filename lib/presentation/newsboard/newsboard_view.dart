@@ -53,7 +53,12 @@ class NewsboardScreen extends NewsboardBaseState<NewsboardViewmodel, NewsBoardVi
             ? Center(child: CircularProgressIndicator())
             : (model.newsList != null && model.newsList.articles.length >= 0)
             ? RefreshIndicator(key: refreshKey, onRefresh: refreshNewsList,child: NewsboardViewUi())
-            : Container(color: Colors.red,);
+            : Container(
+              color: Colors.red,
+              child: Center(
+                 child: Text('News are not available!'),
+          ),
+        );
       },
     );
   }

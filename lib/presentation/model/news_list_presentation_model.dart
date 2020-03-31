@@ -19,8 +19,8 @@ class NewsListPresentationModel {
     }
     return data;
   }
-}
 
+}
 
 //class ArticleListP {
 //
