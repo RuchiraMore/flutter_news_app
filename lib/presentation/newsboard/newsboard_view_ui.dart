@@ -70,11 +70,17 @@ class NewsboardViewUi extends NewsboardBaseModelWidget<NewsboardViewmodel> {
                   tag: index,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15.0),
-                    child: Image.network(
-                      model.newsList.articles[index].urlToImage,
-                      fit: BoxFit.cover,
-                      height: 500,
-                      width: 500,
+                    child: FadeInImage.assetNetwork(
+                      placeholder: AssetIcons.news_logo,
+                      image: model.newsList.articles[index].urlToImage,
+                      fit: BoxFit.cover,height: 500,width: 500,
+
+//                      child: Image.network(
+//                        model.newsList.articles[index].urlToImage,
+//                        fit: BoxFit.cover,
+//                        height: 500,
+//                        width: 500,
+//                      ),
                     ),
 //                  Image(
 //                    image: AssetImage(model.newsList.articles[index].urlToImage),//"assets/images/breaking-news.jpg"

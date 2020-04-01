@@ -30,11 +30,18 @@ class ContentScroll extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  newsList[index].urlToImage,
+                child: FadeInImage.assetNetwork(
+                  placeholder: AssetIcons.news_logo,
+                  image: newsList[index].urlToImage,
                   fit: BoxFit.cover,
                   height: 100,
                   width: 100,
+//                  child: Image.network(
+//                    newsList[index].urlToImage,
+//                    fit: BoxFit.cover,
+//                    height: 100,
+//                    width: 100,
+//                  ),
                 ),
               ),
             ),
